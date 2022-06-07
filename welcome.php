@@ -37,6 +37,7 @@ if(empty($sessionEmail)){
   </div>
 </nav>
 
+<!-- $sessionEmail.jpg image is same name as email  -->
 <img src="users/<?= "$sessionEmail/$sessionEmail.jpg";?>" class="rounded-circle" alt="..."><br/>
 </body>
 </html>
