@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
         mkdir("users/$email");
         file_put_contents("users/$email/details.txt","First name : $firstName\nLast name : $lastName\nEmail : $email\nPhone number : $phone\nPassword : $password");
         session_start();
-        $_SESSION['sid']=$email;
+        $_SESSION['session']=$email;
         header("location:welcome.php");
     }
 }
@@ -44,7 +44,6 @@ if(isset($_POST['submit'])){
       crossorigin="anonymous"
       defer
     ></script>
-    <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
 
     <title>Form Validation</title>
@@ -75,7 +74,7 @@ if(isset($_POST['submit'])){
                }
                ?>
 
-    <div class="container">
+    <div class="container ">
       <h1 class="text-center">Registration Form</h1>
 
       <!-- FORM -->
