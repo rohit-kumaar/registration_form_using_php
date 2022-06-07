@@ -30,7 +30,7 @@ if(empty($sessionEmail)){
 <body>
 <nav class="navbar bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">Welcome : Rohit Kumar</a>
+    <a class="navbar-brand">Welcome</a>
     <form class="d-flex" role="search">
      <h4>Email : <?= $sessionEmail;?> </h4>
     </form>

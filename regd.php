@@ -6,19 +6,43 @@ if(isset($_POST['submit'])){
     $phone=$_POST['phone'];
     $password=$_POST['password'];
    
+    $tmp=$_FILES['file']['tmp_name'];
+    $fname=$_FILES['file']['name'];
+    $extension=pathinfo($fname,PATHINFO_EXTENSION);
 
-    $isEmpty = empty( $firstName) || empty( $lastName) || empty( $email) || empty( $phone) ||empty( $password);
+    $isEmpty = empty( $firstName) || empty( $lastName) || empty( $email) || empty( $phone) ||empty( $password) || empty($tmp);
     
     
     if( $isEmpty){
         $errorMsg="Please fill blank fields";
     }
     else {
-        mkdir("users/$email");
-        file_put_contents("users/$email/details.txt","First name : $firstName\nLast name : $lastName\nEmail : $email\nPhone number : $phone\nPassword : $password");
-        session_start();
-        $_SESSION['session']=$email;
-        header("location:welcome.php");
+
+      $isExtension = $extension=="jpg" || $extension=="png" || $extension=="gif" || $extension=="jpeg";
+      
+      if ($isExtension) {
+
+        if(is_dir("users/$email")){
+               $errorMsg="Email already registered";
+          }else{
+            mkdir("users/$email");
+
+            if(move_uploaded_file($tmp,"users/$email/$email".".jpg")){
+            file_put_contents("users/$email/details.txt","First name : $firstName\nLast name : $lastName\nEmail : $email\nPhone number : $phone\nPassword : $password");
+            session_start();
+            $_SESSION['session']=$email;
+            header("location:welcome.php?uid=$email");
+            }else {
+              $errorMsg="Uploading error";
+          }
+          }
+      } else {
+        $errorMsg="Only upload JPG or PNG file extension";
+      }
+      
+      
+      
+       
     }
 }
 ?>
@@ -157,6 +181,11 @@ if(isset($_POST['submit'])){
             />
             <div class="invalid-feedback">Please provide a strong password</div>
             <div class="valid-feedback">Looks good!</div>
+          </div>
+
+          <div class="mt-3">
+            <input type="file" name="file" class="form-control" aria-label="file example" required>
+            <div class="invalid-feedback">Example invalid form file feedback</div>
           </div>
 
           <input type="submit" name="submit" value="Submit"  class="btn btn-primary mt-3">
