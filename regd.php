@@ -53,16 +53,16 @@ if(isset($_POST['submit'])){
   <body>
     <!-- ALERT MESSAGE -->
     <?php
-               if(isset($errMsg))
+               if(isset($errorMsg))
                {
                  ?>
 
     <div
       id="success"
-      class="alert alert-warning alert-dismissible fade"
+      class="alert alert-warning alert-dismissible "
       role="alert"
     >
-      <strong> <?php $errorMsg; ?></strong>
+      <strong> <?= $errorMsg; ?></strong>
       <button
         type="button"
         class="btn-close"
@@ -78,7 +78,6 @@ if(isset($_POST['submit'])){
     <div class="container">
       <h1 class="text-center">Registration Form</h1>
 
-      <img src="..." class="img-thumbnail" alt="..." width="200" height="200" />
       <!-- FORM -->
       <form method="post" enctype="multipart/form-data">
         <div class="container">
