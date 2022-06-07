@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
             file_put_contents("users/$email/details.txt","First name : $firstName\nLast name : $lastName\nEmail : $email\nPhone number : $phone\nPassword : $password");
             session_start();
             $_SESSION['session']=$email;
-            header("location:welcome.php?uid=$email");
+            header("location:index.php?uid=$email");
             }else {
               $errorMsg="Uploading error";
           }

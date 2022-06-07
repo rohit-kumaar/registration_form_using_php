@@ -28,13 +28,15 @@ if(empty($sessionEmail)){
     ></script>
 </head>
 <body>
-<nav class="navbar bg-light">
+<nav class="navbar bg-dark text-white">
   <div class="container-fluid">
-    <a class="navbar-brand">Welcome</a>
+    <h3 class="navbar-brand">Welcome</h3>
     <form class="d-flex" role="search">
      <h4>Email : <?= $sessionEmail;?> </h4>
     </form>
   </div>
 </nav>
+
+<img src="users/<?= "$sessionEmail/$sessionEmail.jpg";?>" class="rounded-circle" alt="..."><br/>
 </body>
 </html>
